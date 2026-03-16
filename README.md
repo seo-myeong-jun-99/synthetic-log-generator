@@ -11,7 +11,7 @@
 | 허석준 | 세션/파이프라인 | `backend/app/services/session_pipeline.py` |
 | 김우진 | 이벤트/그래프 엔진 | `backend/app/services/event_graph_engine.py` |
 | 서명준 | 메타데이터/출력 | `backend/app/services/output_service.py` |
-| 김광호 | GUI 프론트엔드 | `frontend/src/components/GraphEditor.jsx` |
+
 
 ---
 
