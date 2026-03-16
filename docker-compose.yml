@@ -1,0 +1,45 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: synlog-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+      - ./data:/data
+    environment:
+      - ENV=development
+      - DATA_OUTPUT_PATH=/data/output
+      - DATA_SAMPLE_PATH=/data/sample
+    networks:
+      - synlog-network
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: synlog-frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - REACT_APP_API_URL=http://localhost:8000
+    depends_on:
+      - backend
+    networks:
+      - synlog-network
+    restart: unless-stopped
+
+networks:
+  synlog-network:
+    driver: bridge
+
+volumes:
+  data:
